@@ -66,16 +66,18 @@ workflow_sequence:
   - id: "WF-006"
     name: "workflow-story-gen"
     title: "Story Generation"
-    status: "pending"
+    status: "complete"
+    completed: "2025-11-20"
+    output: "docs/epics.md"
     depends_on: ["WF-005"]
-    estimated_time: "15-20 min"
     
   - id: "WF-007"
     name: "workflow-sprint-plan"
     title: "Sprint Planning"
-    status: "pending"
+    status: "complete"
+    completed: "2025-11-20"
+    output: "docs/sprint-artifacts/sprint-status.yaml"
     depends_on: ["WF-006"]
-    estimated_time: "10-15 min"
 
 # Current Status
 current_workflow: "workflow-story-gen"
