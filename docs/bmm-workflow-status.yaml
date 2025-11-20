@@ -59,9 +59,9 @@ workflow_sequence:
   - id: "WF-005"
     name: "workflow-quick-arch"
     title: "Quick Architecture Doc"
-    status: "pending"
-    depends_on: ["WF-004"]
-    estimated_time: "10-15 min"
+    status: "complete"
+    completed: "2025-11-20"
+    output: "docs/architecture.md"
     
   - id: "WF-006"
     name: "workflow-story-gen"
@@ -78,9 +78,9 @@ workflow_sequence:
     estimated_time: "10-15 min"
 
 # Current Status
-current_workflow: "workflow-quick-arch"
+current_workflow: "workflow-story-gen"
 overall_status: "in_progress"
-phase: "discovery"
+phase: "planning"
 
 # Milestones
 milestones:
@@ -91,7 +91,7 @@ milestones:
     
   - name: "Planning Complete"
     target_date: "2025-11-21"
-    status: "pending"
+    status: "in_progress"
     workflows: ["WF-004", "WF-005"]
     
   - name: "Ready to Code"
