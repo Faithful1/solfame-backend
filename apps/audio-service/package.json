@@ -1,0 +1,17 @@
+{
+  "name": "@solfame/audio-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "uvicorn main:app --reload --port 8000",
+    "start": "uvicorn main:app --host 0.0.0.0 --port 8000",
+    "test": "pytest",
+    "lint": "ruff check .",
+    "lint:fix": "ruff check --fix .",
+    "format": "black .",
+    "format:check": "black --check .",
+    "typecheck": "mypy ."
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

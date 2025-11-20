@@ -20,7 +20,7 @@ This document provides the complete epic and story breakdown for SolfaMe, decomp
 From PRD analysis, I've identified the following functional requirements:
 
 - **FR1**: YouTube link input and validation (US1.1)
-- **FR2**: Audio extraction and preprocessing from YouTube (US1.2) 
+- **FR2**: Audio extraction and preprocessing from YouTube (US1.2)
 - **FR3**: SATB vocal part separation using AI (US2.1)
 - **FR4**: Pitch detection and note transcription (US2.2)
 - **FR5**: Solfa notation generation (do-re-mi syllables) (US2.3)
@@ -40,7 +40,7 @@ From PRD analysis, I've identified the following functional requirements:
 Based on natural value delivery boundaries and the PRD user stories, I propose 5 epics:
 
 1. **Epic 1: Foundation & Infrastructure** - Project setup and core technical infrastructure
-2. **Epic 2: YouTube Processing Pipeline** - Input handling and audio extraction  
+2. **Epic 2: YouTube Processing Pipeline** - Input handling and audio extraction
 3. **Epic 3: AI Transcription Engine** - Source separation and music notation generation
 4. **Epic 4: Multi-Modal Correction Interface** - User correction tools and workflow
 5. **Epic 5: PDF Generation & Export** - Output formatting and delivery
@@ -79,7 +79,8 @@ So that I can efficiently develop and maintain both frontend and backend service
 
 **Prerequisites:** None (foundational story)
 
-**Technical Notes:** 
+**Technical Notes:**
+
 - Use npm workspaces for monorepo management
 - Configure concurrently for multi-service development
 - Set up TypeScript project references for cross-package imports
@@ -104,6 +105,7 @@ So that I can persist application data with type safety and migrations.
 **Prerequisites:** Story 1.1 (project structure)
 
 **Technical Notes:**
+
 - Use Railway PostgreSQL for development/production
 - Schema includes: jobs (id, youtubeUrl, status, audioMetadata), sessions (id, jobId, corrections), corrections (id, method, sectionData)
 - Set up database URL environment variable handling
@@ -127,6 +129,7 @@ So that I can serve the frontend and provide backend API functionality in one de
 **Prerequisites:** Story 1.1 (project structure)
 
 **Technical Notes:**
+
 - Use Next.js App Router (not Pages Router)
 - Configure Tailwind with custom theme for music application UI
 - Set up environment validation with zod or similar
@@ -151,6 +154,7 @@ So that I can leverage Python's superior audio processing libraries while mainta
 **Prerequisites:** Story 1.1 (project structure)
 
 **Technical Notes:**
+
 - Use uvicorn as ASGI server
 - Include pydantic models for request/response validation
 - Set up temporary file handling with automatic cleanup
@@ -175,6 +179,7 @@ So that I can process transcription jobs asynchronously without blocking the use
 **Prerequisites:** Story 1.2 (database), Story 1.4 (FastAPI service)
 
 **Technical Notes:**
+
 - Use Bull Queue with Redis for Node.js side
 - Use Celery or similar for Python worker processes
 - Implement job status updates in database via Prisma
@@ -199,6 +204,7 @@ So that I can handle file processing without storing copyrighted content permane
 **Prerequisites:** Story 1.3 (Next.js app), Story 1.4 (FastAPI service)
 
 **Technical Notes:**
+
 - Use AWS S3 with bucket lifecycle rules for auto-deletion
 - Implement pre-signed URLs for secure file access
 - Configure bucket CORS for frontend file uploads
@@ -223,6 +229,7 @@ So that I can confidently deploy changes and maintain code quality.
 **Prerequisites:** All previous stories (1.1-1.6)
 
 **Technical Notes:**
+
 - Use Vercel for Next.js deployment with preview deployments
 - Use Railway for FastAPI and PostgreSQL hosting
 - Configure environment-specific variable management
@@ -253,6 +260,7 @@ So that I can quickly start transcribing songs without dealing with complex file
 **Prerequisites:** Story 1.3 (Next.js web app)
 
 **Technical Notes:**
+
 - Use React Hook Form for form validation
 - Implement YouTube URL regex patterns for validation
 - Call YouTube Data API or yt-dlp for metadata extraction
@@ -278,6 +286,7 @@ So that I can verify I'm transcribing the correct song before processing begins.
 **Prerequisites:** Story 2.1 (URL input interface)
 
 **Technical Notes:**
+
 - Use yt-dlp for robust metadata extraction
 - Implement duration validation with user-friendly error messages
 - Cache metadata temporarily to avoid repeated API calls
@@ -302,6 +311,7 @@ So that I can provide optimal input for AI source separation algorithms.
 **Prerequisites:** Story 1.4 (FastAPI audio service), Story 1.6 (file storage)
 
 **Technical Notes:**
+
 - Use yt-dlp with specific audio format preferences (wav/flac preferred)
 - Implement extraction progress tracking via websockets or polling
 - Store extracted audio in S3 with 24-hour auto-deletion
@@ -327,6 +337,7 @@ So that the source separation algorithm receives the best possible input quality
 **Prerequisites:** Story 2.3 (audio extraction)
 
 **Technical Notes:**
+
 - Use librosa for audio preprocessing in FastAPI service
 - Implement loudness normalization using pyloudnorm
 - Apply gentle noise reduction to preserve vocal quality
@@ -353,6 +364,7 @@ So that I know the system is working and can estimate when results will be ready
 **Prerequisites:** Story 1.5 (job queue), Story 2.4 (audio preprocessing)
 
 **Technical Notes:**
+
 - Use Bull Queue for job management with progress reporting
 - Implement WebSocket for real-time updates or polling fallback
 - Store job status in database for persistence across page reloads
@@ -378,6 +390,7 @@ So that I understand what happened and what I can do about it.
 **Prerequisites:** All previous Epic 2 stories
 
 **Technical Notes:**
+
 - Implement comprehensive error categorization and messaging
 - Use structured logging for debugging while keeping user messages simple
 - Include error recovery suggestions based on error type
@@ -410,6 +423,7 @@ So that I can identify individual vocal lines from mixed audio recordings.
 **Prerequisites:** Story 2.4 (audio preprocessing)
 
 **Technical Notes:**
+
 - Integrate LALAL.AI API or Replicate Demucs model via FastAPI service
 - Implement API key management and usage tracking
 - Store separated tracks temporarily in S3 with secure access
@@ -436,6 +450,7 @@ So that I can represent melodies in a format suitable for musical notation.
 **Prerequisites:** Story 3.1 (source separation)
 
 **Technical Notes:**
+
 - Use Basic-Pitch or Crepe for pitch detection in Python
 - Implement note onset detection using librosa
 - Convert frequency data to MIDI note numbers with proper octave mapping
@@ -462,6 +477,7 @@ So that I can generate accurate solfa notation and ensure harmonic correctness.
 **Prerequisites:** Story 3.2 (pitch detection)
 
 **Technical Notes:**
+
 - Use music21 library for key signature detection and analysis
 - Implement Krumhansl-Schmuckler key-finding algorithm
 - Handle both major and minor keys with appropriate solfa systems
@@ -488,6 +504,7 @@ So that users can see and edit the transcription in familiar sheet music format.
 **Prerequisites:** Story 3.3 (music theory analysis)
 
 **Technical Notes:**
+
 - Use music21 for notation generation and formatting
 - Implement rhythm quantization with configurable precision
 - Apply proper beaming rules for readability
@@ -514,6 +531,7 @@ So that choir members can learn their parts using the solfa system.
 **Prerequisites:** Story 3.4 (notation generation)
 
 **Technical Notes:**
+
 - Implement movable-do solfa system with chromatic alterations
 - Handle both major and minor key solfa mappings
 - Support traditional and contemporary solfa syllable preferences
@@ -540,6 +558,7 @@ So that users can identify sections that may need correction and prioritize thei
 **Prerequisites:** All previous Epic 3 stories
 
 **Technical Notes:**
+
 - Combine confidence metrics from source separation, pitch detection, and theory analysis
 - Implement weighted scoring based on multiple quality indicators
 - Use statistical analysis to identify outliers and anomalies
@@ -572,6 +591,7 @@ So that I can hear what the AI detected and identify sections needing correction
 **Prerequisites:** Story 3.6 (confidence scoring and quality assessment)
 
 **Technical Notes:**
+
 - Use Tone.js for web audio playback with multi-track support
 - Implement audio scrubbing with smooth seeking
 - Synchronize audio position with visual notation scroll
@@ -598,6 +618,7 @@ So that I can prioritize my correction efforts on the areas most likely to need 
 **Prerequisites:** Story 4.1 (audio playback system)
 
 **Technical Notes:**
+
 - Implement color-coding with accessibility-friendly contrast ratios
 - Use CSS filters/overlays for visual confidence indicators
 - Create sortable/filterable interface for prioritized correction workflow
@@ -624,6 +645,7 @@ So that I can fix pitch errors using my ear rather than needing to understand mu
 **Prerequisites:** Story 4.2 (error highlighting)
 
 **Technical Notes:**
+
 - Use Web Audio API for microphone access with user permission handling
 - Implement real-time pitch detection using Aubio.js or similar
 - Display pitch detection with visual feedback (moving pitch indicator)
@@ -652,6 +674,7 @@ So that I can fine-tune timing and pitch details with visual precision.
 **Prerequisites:** Story 4.3 (humming correction)
 
 **Technical Notes:**
+
 - Use WaveSurfer.js or similar for waveform visualization
 - Implement drag-and-drop note editing with snap-to-grid options
 - Synchronize waveform timeline with notation measure positions
@@ -680,6 +703,7 @@ So that I can verify accuracy and identify discrepancies before making correctio
 **Prerequisites:** Story 4.4 (visual editor)
 
 **Technical Notes:**
+
 - Implement synchronized dual-audio playback with precise timing control
 - Generate AI-synthesized audio from corrected notation for comparison
 - Use Web Audio API for real-time audio processing and mixing
@@ -708,6 +732,7 @@ So that I can optimize my correction workflow and avoid unnecessary work.
 **Prerequisites:** Story 4.5 (A/B comparison)
 
 **Technical Notes:**
+
 - Implement keyboard shortcuts for rapid approval workflow (A=approve, N=needs work, Space=next)
 - Store approval status in database with user session persistence
 - Use visual styling to distinguish approved vs. pending sections
@@ -736,6 +761,7 @@ So that I can catch errors that might affect choir performance quality.
 **Prerequisites:** Story 4.6 (section approval)
 
 **Technical Notes:**
+
 - Implement music theory rules engine using music21 library
 - Create configurable validation profiles (beginner, intermediate, advanced)
 - Generate contextual suggestions based on harmonic analysis
@@ -770,6 +796,7 @@ So that I can confidently distribute arrangements to my choir without quality co
 **Prerequisites:** Story 4.7 (music theory validation)
 
 **Technical Notes:**
+
 - Use music21 or MuseScore for professional notation rendering
 - Implement proper music engraving rules (spacing ratios, beam angles, stem directions)
 - Generate high-resolution PDF (300 DPI minimum) for print quality
@@ -797,6 +824,7 @@ So that I can practice my specific part and see how it fits with the full arrang
 **Prerequisites:** Story 5.1 (layout engine)
 
 **Technical Notes:**
+
 - Generate separate PDF files for combined score and individual parts
 - Implement cue note logic to show important harmonic or rhythmic cues
 - Use consistent page numbering and header formatting
@@ -824,6 +852,7 @@ So that choir members can learn parts using the do-re-mi system effectively.
 **Prerequisites:** Story 5.2 (SATB arrangement)
 
 **Technical Notes:**
+
 - Implement precise text positioning algorithms for syllable placement
 - Use consistent font family and size for solfa text throughout document
 - Handle syllable collisions with lyrics, dynamics, and other text
@@ -851,6 +880,7 @@ So that I can adapt the format to my team's preferences and printing requirement
 **Prerequisites:** Story 5.3 (solfa integration)
 
 **Technical Notes:**
+
 - Create settings interface with live preview of formatting changes
 - Implement responsive layout that adapts to different font sizes
 - Store user preferences for layout settings
@@ -878,6 +908,7 @@ So that I maintain copyright compliance and provide appropriate credits.
 **Prerequisites:** Story 5.4 (layout options)
 
 **Technical Notes:**
+
 - Embed comprehensive PDF metadata for document management
 - Include legal disclaimer text template that can be customized
 - Format copyright and attribution information professionally
@@ -905,6 +936,7 @@ So that I can quickly distribute materials to my choir team.
 **Prerequisites:** Story 5.5 (metadata and copyright)
 
 **Technical Notes:**
+
 - Generate secure download URLs with expiration times
 - Create ZIP packages dynamically with properly named files
 - Implement email sharing with download link distribution
@@ -918,20 +950,20 @@ So that I can quickly distribute materials to my choir team.
 
 ### FR Coverage Matrix
 
-| Epic | Stories | FR Coverage | User Value Delivered |
-|------|---------|-------------|---------------------|
-| **Epic 1: Foundation** | 7 stories | Infrastructure for all FRs | Development environment ready |
-| **Epic 2: YouTube Processing** | 6 stories | FR1, FR2 | Users can input YouTube links and see processing progress |
-| **Epic 3: AI Transcription** | 6 stories | FR3, FR4, FR5 | Users get AI-generated SATB notation with solfa syllables |
+| Epic                             | Stories   | FR Coverage                    | User Value Delivered                                               |
+| -------------------------------- | --------- | ------------------------------ | ------------------------------------------------------------------ |
+| **Epic 1: Foundation**           | 7 stories | Infrastructure for all FRs     | Development environment ready                                      |
+| **Epic 2: YouTube Processing**   | 6 stories | FR1, FR2                       | Users can input YouTube links and see processing progress          |
+| **Epic 3: AI Transcription**     | 6 stories | FR3, FR4, FR5                  | Users get AI-generated SATB notation with solfa syllables          |
 | **Epic 4: Correction Interface** | 7 stories | FR6, FR7, FR8, FR9, FR10, FR11 | Users can perfect transcriptions using multiple correction methods |
-| **Epic 5: PDF Export** | 6 stories | FR12, FR13 | Users get print-ready sheet music for church use |
+| **Epic 5: PDF Export**           | 6 stories | FR12, FR13                     | Users get print-ready sheet music for church use                   |
 
 ### Complete Functional Requirements Coverage
 
 ✅ **All 13 functional requirements covered across 32 stories**
 
 - **FR1**: YouTube link input and validation → Epic 2, Story 2.1
-- **FR2**: Audio extraction and preprocessing → Epic 2, Stories 2.3-2.4  
+- **FR2**: Audio extraction and preprocessing → Epic 2, Stories 2.3-2.4
 - **FR3**: SATB vocal part separation using AI → Epic 3, Story 3.1
 - **FR4**: Pitch detection and note transcription → Epic 3, Story 3.2
 - **FR5**: Solfa notation generation → Epic 3, Story 3.5
@@ -947,6 +979,7 @@ So that I can quickly distribute materials to my choir team.
 ### Epic Structure Validation ✅
 
 **User Value Check:** Each epic delivers tangible user value
+
 - **Epic 1**: Foundation exception (necessary for greenfield project)
 - **Epic 2**: Users can start transcriptions and see progress
 - **Epic 3**: Users receive AI-generated musical notation
@@ -954,6 +987,7 @@ So that I can quickly distribute materials to my choir team.
 - **Epic 5**: Users get print-ready sheet music for church use
 
 **Story Quality Check:** All stories are vertically sliced and appropriately sized
+
 - Each story delivers complete functionality within its scope
 - No forward dependencies exist (only backward references)
 - Stories sized for single dev agent completion

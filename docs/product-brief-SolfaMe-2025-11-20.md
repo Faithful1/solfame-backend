@@ -50,16 +50,19 @@ SolfaMe democratizes music transcription by using AI to automatically break down
 ## Success Vision
 
 ### Personal Success Metrics
+
 - **Confidence Boost**: Ability to confidently say "yes" when team asks about learning new songs
 - **Stress Reduction**: Elimination of time pressure and anxiety around transcription requests
 - **Quality Assurance**: Choir successfully using SolfaMe-generated materials for worship services
 
 ### Community Impact Goals
+
 - **Expanded Repertoire**: Churches trying new music previously limited by transcription bottlenecks
 - **Empowered Musicians**: Keyboardists and music directors feeling confident in their roles regardless of transcription skills
 - **Democratic Access**: Any church team able to learn any song, regardless of musical training background
 
 ### Business Objectives
+
 - **Market Validation**: Church musicians actively using and recommending SolfaMe
 - **Quality Standard**: 90%+ user satisfaction with generated PDF outputs
 - **Community Growth**: Word-of-mouth adoption through church musician networks
@@ -71,6 +74,7 @@ SolfaMe democratizes music transcription by using AI to automatically break down
 ### Core Features
 
 **MVP Core Features:**
+
 - **YouTube Link Input** - Simple URL input for any song source
 - **AI-Powered Source Separation** - Automatic separation into SATB vocal parts
 - **Solfa Notation Generation** - Do-re-mi syllables mapped under each note
@@ -97,27 +101,32 @@ SolfaMe democratizes music transcription by using AI to automatically break down
 ### Technical Preferences & Constraints
 
 **MVP Approach:**
+
 - **Single Song Focus**: Perfect one-song workflow before building batch processing capabilities
 - **Speed Optimization**: Target processing in seconds rather than minutes for maximum user satisfaction
 - **Quality Over Features**: 90% accuracy more important than additional features for MVP
 
 **Performance Targets:**
+
 - **Processing Speed**: As fast as possible (seconds preferred over minutes)
 - **User Tolerance**: Church musicians expect quick turnaround for Sunday preparation
 - **Iterative Development**: Start simple, add complexity in future versions
 
 **Development Philosophy:**
+
 - **Prove the Concept**: Validate core transcription → PDF workflow with real church use cases
 - **User Feedback Driven**: Build for actual church musician workflows and constraints
 - **Future Scalability**: Design MVP foundation that can grow to batch processing and advanced features
 
 **Solo Development Constraints:**
+
 - **Developer**: Building independently - architecture must be manageable for single developer
 - **Quality + Speed Focus**: Both processing speed AND transcription accuracy are critical success factors
 - **Pragmatic Technology Choices**: Prefer proven, reliable solutions over cutting-edge complexity
 - **MVP-First Mindset**: Ship working solution quickly, iterate based on real church musician feedback
 
 **Recommended Technical Approach for Solo Developer:**
+
 - **Web Application**: Easier deployment, updates, and user access than desktop app
 - **Cloud Processing**: Leverage managed AI services rather than building/maintaining ML infrastructure
 - **Proven AI Models**: Use established source separation APIs (LALAL.AI, Spleeter-based services) for reliability
